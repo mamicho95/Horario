@@ -1,0 +1,25 @@
+table{
+    width: 100%;
+    border: 1px solid black;
+    margin-bottom: 2%;
+    font-size: 14px;
+}
+table th {
+    text-align: center;
+}
+table tbody td {
+    text-align: center;
+}
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+.azul{
+    background: aquamarine;
+}
+.plomo{
+    background: rgb(209, 209, 209);
+}
