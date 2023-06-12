@@ -79,6 +79,28 @@ if ($result) {
     echo "Error en la consulta: " . $connection->error;
 }
 
+$query = 'SELECT bloque, sala, d.nombre as docente, m.nombre as modulo, dia FROM clase, docente d, modulo m WHERE nivel = "I" AND id_docente = d.id AND id_modulo = m.id and orden = 2';
+$result = $connection->query($query);
+
+if ($result) {
+    $claseN1B2 = $result->fetch_all(MYSQLI_ASSOC);
+    $a1 = array();
+    $a2 = array("N° SALA");
+    $a3 = array("PROFESOR");
+    foreach ($claseN1B2 as $row) {
+        if (!$a1){
+            array_push($a1, $row["bloque"]);
+        }
+        array_push($a1, $row["modulo"]);
+        array_push($a2, $row["sala"]);
+        array_push($a3, $row["docente"]);
+    }
+    $claseN1B2 = array($a1,$a2,$a3);
+} else {
+    echo "Error en la consulta: " . $connection->error;
+}
+
+
 $result->close();
 $connection->close();
 

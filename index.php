@@ -132,11 +132,51 @@ require 'conexionBdd.php';
                                 <th>Viernes</th>
                             </tr>
                             <?php
+                            $contador = 0;
                             foreach ($claseN1B1 as $row) {
-                                echo "<tr>";
-                                foreach ($row as $col) {
-                                    echo "<td>", $col, "</td>";
+                                switch ($contador) {
+                                    case 0:
+                                        echo "<tr class='azul'>";
+                                        break;
+                                    case 1:
+                                        echo "<tr>";
+                                        break;
+                                    case 2:
+                                        echo "<tr class='plomo'>";
+                                        break;
+                                    default:
+                                    echo "<tr>";
                                 }
+                                
+                                foreach ($row as $col) {
+                                    
+                                    echo "<td >", $col, "</td>";
+                                }
+                                $contador++;
+                                echo "</tr>";
+                            }
+                            $contador = 0;
+                            foreach ($claseN1B2 as $row) {
+                                switch ($contador) {
+                                    case 0:
+                                        echo "<tr class='azul'>";
+                                        break;
+                                    case 1:
+                                        echo "<tr>";
+                                        break;
+                                    case 2:
+                                        echo "<tr class='plomo'>";
+                                        break;
+                                    default:
+                                    echo "<tr>";
+                                }
+                                
+                                foreach ($row as $col) {
+                                    
+                                    echo "<td >", $col, "</td>";
+                                }
+                                $contador++;
+                                echo "</tr>";
                             }
                             ?>
                         </table>
