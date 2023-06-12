@@ -42,7 +42,7 @@ require 'conexionBdd.php';
 
             <div class="col py-3">
                 <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade " id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+                    <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
                         <table>
                             <tr class="plomo">
                                 <td>Area:</td>
@@ -120,7 +120,7 @@ require 'conexionBdd.php';
                             </tbody>
                         </table>
                     </div>
-                    <div class="tab-pane fade show active" id="list-profile" role="tabpanel"
+                    <div class="tab-pane fade " id="list-profile" role="tabpanel"
                         aria-labelledby="list-profile-list">
                         <table>
                             <tr>
