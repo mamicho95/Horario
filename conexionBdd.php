@@ -99,10 +99,39 @@ if ($result) {
 } else {
     echo "Error en la consulta: " . $connection->error;
 }
-
-
 $result->close();
 $connection->close();
+
+function validarUsuario($username, $password) {
+    // Conectarse a la base de datos
+    $host = "localhost"; // Cambiar si es necesario
+    $dbname = "horario"; // Nombre de tu base de datos
+    $dbUsername = "root"; // Tu nombre de usuario de MySQL
+    $dbPassword = ""; // Tu contraseña de MySQL
+
+    
+    try {
+        $connection = new PDO("mysql:host=$host;dbname=$dbname", $dbUsername, $dbPassword);
+        $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    } catch (PDOException $e) {
+        echo "Error de conexión: " . $e->getMessage();
+        return false;
+    }
+
+    // Realizar la consulta a la base de datos
+    $query = "SELECT * FROM users WHERE username = :username AND password = :password";
+    $stmt = $connection->prepare($query);
+    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':password', $password);
+    $stmt->execute();
+
+    // Verificar si se encontró un usuario con las credenciales proporcionadas
+    if ($stmt->rowCount() > 0) {
+        return true; // El usuario está en la base de datos
+    } else {
+        return false; // El usuario no está en la base de datos
+    }
+}
 
 //var_dump($claseN1B1);
 ?>

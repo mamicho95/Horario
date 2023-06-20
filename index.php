@@ -1,9 +1,19 @@
 <?php
+session_start();
 require 'conexionBdd.php';
+//var_dump($_SESSION["user"]);
+if (isset($_POST['user']) && $_POST["password"]) {
+    $username = $_POST['user'];
+    $password = $_POST['password'];
+    if(validarUsuario($username, $password)){
+        $_SESSION["user"] = "valido";
+    }else{
+        echo '<script>alert("Usuario no válido");</script>';
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,8 +29,32 @@ require 'conexionBdd.php';
     <title>Horaio</title>
 </head>
 
-<body>
-    <div class="container-fluid">
+
+    <?php 
+    if (!isset( $_SESSION["user"])) {
+
+    ?>
+    <body style="background-color: #5765ff;">
+    <div class="login">
+    <form method="post">
+        <div class="form-group">
+            <label for="user">Usuario</label>
+            <input type="text" class="form-control" name="user" id="user" placeholder="Usuario">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="password">Contraseña</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña">
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Iniciar sesion</button>
+    </form>
+    </div>
+    <?php
+    }else {
+        ?>
+        <body>
+<div class="container-fluid">
         <div class="row flex-nowrap">
             <div class="col-auto  bg-dark">
                 <div class="d-flex flex-column vh-100 flex-shrink-0 p-3 text-white bg-dark" style="width: 250px;"> <a
@@ -37,6 +71,7 @@ require 'conexionBdd.php';
                             data-bs-toggle="list" href="#list-profile" role="tab" aria-controls="list-profile"> <i
                                 class="fa fa-calendar"></i><span class="ms-2">Horarios</span></a>
                     </div>
+                    <button class="logout" onclick="logout()">Salir</button>
                 </div>
             </div>
 
@@ -185,6 +220,10 @@ require 'conexionBdd.php';
             </div>
         </div>
     </div>
+    <?php
+    }
+    ?>
+    
 </body>
 
 </html>

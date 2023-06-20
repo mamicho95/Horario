@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 13-06-2023 a las 00:18:20
+-- Tiempo de generación: 20-06-2023 a las 03:08:21
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.0.28
 
@@ -152,6 +152,25 @@ INSERT INTO `modulo` (`id`, `nombre`) VALUES
 (12, 'English Level Elementary'),
 (13, 'Taller de Innovación');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`) VALUES
+(1, 'cft', '1234');
+
 --
 -- Índices para tablas volcadas
 --
@@ -185,6 +204,12 @@ ALTER TABLE `modulo`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -211,6 +236,12 @@ ALTER TABLE `docente`
 --
 ALTER TABLE `modulo`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de la tabla `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Restricciones para tablas volcadas
